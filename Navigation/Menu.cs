@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ConsoleNavigation {
     public class Menu {
@@ -22,7 +23,26 @@ namespace ConsoleNavigation {
             Console.Clear();
             foreach (MenuItem item in this.menuItems) {
                 Console.WriteLine(item);
+                Console.ResetColor();
             }
+        }
+
+        public string GetInputPerMenuItem() {
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.Black;
+            int cursorVerticalPosition = (this.menuItems.Count - this.currentItemIndex);
+
+            Console.SetCursorPosition(this.current.Content.Length + 2, Console.CursorTop - cursorVerticalPosition);
+            string userInput = Console.ReadLine();
+
+            Console.ResetColor();
+            // TEST ONLY:
+            Console.SetCursorPosition(0, Console.CursorTop + cursorVerticalPosition);
+            System.Console.WriteLine("input get:" + userInput);
+            Thread.Sleep(2000);
+
+            return userInput;
         }
 
         ///

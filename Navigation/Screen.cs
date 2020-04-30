@@ -32,7 +32,7 @@ namespace ConsoleNavigation {
                 if (pressedKey == ConsoleKey.Enter) {
 
                     // Parse current menu item content (string) to defined enum
-                    Enum.TryParse(this.ScreenMenu.current.Content, out MainMenuOptions temp);
+                    Enum.TryParse(this.ScreenMenu.current.Content, out MenuOptions temp);
                     
                     switch ((int) temp) {
                         case 0: 
@@ -45,11 +45,34 @@ namespace ConsoleNavigation {
 
                             break;
                         case 1: 
-                            System.Console.WriteLine("option1 clicked");
+                            System.Console.WriteLine("option2 clicked");
                             Thread.Sleep(1000);
                             break;
                         case 2: 
                             this.ScreenMenu.isDisplayed = false;
+                            break;
+                        case 3: //one
+                            System.Console.WriteLine("one clicked");
+                            // Menu opt2nestedMenu = new Menu(new string[2] {"oneSubmenu", "twoSubmenu"});
+                            InputMenu opt2nestedMenu = new InputMenu(new string[2] {"oneSubmenu", "twoSubmenu"});
+                            Screen option2Screen = new Screen(opt2nestedMenu);
+                            Program.sampleApp.Screens.Add(option2Screen);
+                            option2Screen.Controller();
+                            break;
+                        case 4: //two
+                            System.Console.WriteLine("two clicked");
+                            Thread.Sleep(1000);
+                            break;
+                        case 5: //back
+                            this.ScreenMenu.isDisplayed = false;
+                            break;
+                        case 6: //back
+                            // System.Console.WriteLine("oneSubmenu");
+                            // Thread.Sleep(1000);
+                            this.ScreenMenu.GetInputPerMenuItem();
+                            break;
+                        case 7: //back
+                            this.ScreenMenu.GetInputPerMenuItem();
                             break;
                     }
                 }
